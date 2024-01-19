@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.dvyadav.awl.TeacherPageController">
+   <children>
+      <AnchorPane focusTraversable="true" prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c6c6c6" height="54.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1097.0" />
+            <Label fx:id="usernameOrTableNameLabel" alignment="CENTER" layoutX="963.0" layoutY="5.0" prefHeight="44.0" prefWidth="120.0" text="User Name">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" layoutX="408.0" layoutY="44.0" prefHeight="126.0" prefWidth="602.0" text="DashBoard">
+               <font>
+                  <Font size="49.0" />
+               </font>
+            </Label>
+            <Label fx:id="infoLabelOnStudentMangement" alignment="CENTER" focusTraversable="false" prefHeight="34.0" prefWidth="317.0" text="Info Label" visible="false" AnchorPane.bottomAnchor="476.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="773.0" AnchorPane.topAnchor="112.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <AnchorPane fx:id="studentManagementAnchorPane" layoutX="331.0" layoutY="10.0" prefHeight="622.0" prefWidth="1097.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="addStudentButton" layoutX="13.0" layoutY="154.0" mnemonicParsing="false" onAction="#showAddStudentPane" prefHeight="54.0" prefWidth="306.0" text="Add Student">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="deleteStudentButton" layoutX="13.0" layoutY="213.0" mnemonicParsing="false" onAction="#showDeleteStudentPane" prefHeight="54.0" prefWidth="306.0" text="Delete Student">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane fx:id="addStudentAnchorPane" layoutX="13.0" layoutY="272.0" prefHeight="334.0" prefWidth="306.0" visible="false">
+                     <children>
+                        <TextField fx:id="rollNumberTextFieldOnAddStudent" layoutX="6.0" layoutY="24.0" onKeyTyped="#allowOnlyNumbers" prefHeight="24.0" prefWidth="295.0" promptText="Enter unique Roll Number">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label focusTraversable="false" layoutX="6.0" layoutY="-2.0" prefHeight="34.0" prefWidth="133.0" text="Roll Number:" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="-2.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="nameTextFieldOnAddStudent" layoutX="6.0" layoutY="78.0" prefHeight="9.0" prefWidth="295.0" promptText="Enter Full Name">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Label focusTraversable="false" layoutX="6.0" layoutY="52.0" prefHeight="34.0" prefWidth="133.0" text="Name:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="departmentComboBoxOnAddStudent" layoutX="6.0" layoutY="134.0" onAction="#loadSections" prefHeight="31.0" prefWidth="295.0" promptText="Select" />
+                        <Label focusTraversable="false" layoutX="6.0" layoutY="107.0" prefHeight="34.0" prefWidth="133.0" text="Department:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="sectionComboBoxOnAddStudent" layoutX="6.0" layoutY="187.0" prefHeight="31.0" prefWidth="295.0" promptText="Select" />
+                        <Label focusTraversable="false" layoutX="7.0" layoutY="161.0" prefHeight="34.0" prefWidth="133.0" text="Section:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="semesterComboBoxOnAddStundent" layoutX="6.0" layoutY="240.0" prefHeight="31.0" prefWidth="295.0" promptText="Select" />
+                        <Label focusTraversable="false" layoutX="9.0" layoutY="214.0" prefHeight="34.0" prefWidth="133.0" text="Semester:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="confirmButtonOnAddStudent" layoutX="6.0" layoutY="287.0" mnemonicParsing="false" onAction="#validateAndAddStudent" prefHeight="34.0" prefWidth="295.0" text="Confirm">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="deleteStudentAnchorPane" layoutX="13.0" layoutY="272.0" prefHeight="334.0" prefWidth="306.0" visible="false">
+                     <children>
+                        <TextField fx:id="rollNumberTextFieldOnDeleteStudent" layoutX="6.0" layoutY="24.0" onKeyTyped="#allowOnlyNumbers" prefHeight="31.0" prefWidth="224.0" promptText="Enter Roll Number">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="checkButtonOnDeleteStudent" layoutX="233.0" layoutY="24.0" mnemonicParsing="false" onAction="#showStudentDataForConfirmDeleteion" prefHeight="31.0" prefWidth="70.0" text="Confirm" textAlignment="CENTER" wrapText="true">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Label focusTraversable="false" layoutX="6.0" layoutY="-2.0" prefHeight="34.0" prefWidth="133.0" text="Roll Number:" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="-2.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label focusTraversable="false" layoutX="6.0" layoutY="55.0" prefHeight="34.0" prefWidth="133.0" text="Name:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nameLabelOnDeleteStudent" layoutX="6.0" layoutY="78.0" prefHeight="31.0" prefWidth="295.0" text="Student Name">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label focusTraversable="false" layoutX="6.0" layoutY="110.0" prefHeight="34.0" prefWidth="133.0" text="Department:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label focusTraversable="false" layoutX="7.0" layoutY="164.0" prefHeight="34.0" prefWidth="133.0" text="Section:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label focusTraversable="false" layoutX="9.0" layoutY="217.0" prefHeight="34.0" prefWidth="133.0" text="Semester:">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="departmentLabelOnDeleteStudent" layoutX="6.0" layoutY="134.0" prefHeight="31.0" prefWidth="295.0" text="Department Name">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sectionLabelOnDeletStudent" layoutX="6.0" layoutY="187.0" prefHeight="31.0" prefWidth="295.0" text="Section Name">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="semesterLabelOnDeleteStudent" layoutX="6.0" layoutY="240.0" prefHeight="31.0" prefWidth="295.0" text="Semester Name">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="confirmButtonOnDeleteStudent" layoutX="6.0" layoutY="287.0" mnemonicParsing="false" onAction="#deleteStudent" prefHeight="34.0" prefWidth="295.0" text="Delete">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <TableView fx:id="tableOnViewStudent" layoutX="14.0" layoutY="60.0" prefHeight="546.0" prefWidth="750.0" AnchorPane.rightAnchor="12.0">
+                    <columns>
+                      <TableColumn fx:id="rollNumberColumnOnViewStudent" prefWidth="150.0" text="Roll No" />
+                      <TableColumn fx:id="nameColumnOnViewStudent" prefWidth="196.0" text="Name" />
+                        <TableColumn fx:id="deapartmentColumnOnViewStudent" prefWidth="238.0" text="Department" />
+                        <TableColumn fx:id="sectionColumnOnViewStudent" prefWidth="81.0" text="Section" />
+                        <TableColumn fx:id="semesterColumnOnViewStudent" prefWidth="79.0" text="Semester" />
+                    </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="attendenceManagementAnchorPane" prefHeight="622.0" prefWidth="1097.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="markAttendenceButtonOnAttendenceManagement" layoutX="13.0" layoutY="154.0" mnemonicParsing="false" onAction="#showMarkAttendenceSubPane" prefHeight="54.0" prefWidth="306.0" text="Mark / Unmark Attendence">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="viewAttendenceButtonOnAttendenceManagement" layoutX="13.0" layoutY="213.0" mnemonicParsing="false" onAction="#showViewAttendenceSubPane" prefHeight="54.0" prefWidth="306.0" text="View Attendence">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <AnchorPane fx:id="markAttendenceSubAnchorPane" layoutX="13.0" layoutY="272.0" prefHeight="334.0" prefWidth="306.0" visible="false">
+                     <children>
+                        <ComboBox fx:id="departmentComboBoxOnMarkAttendence" layoutX="6.0" layoutY="25.0" onAction="#loadSections" prefHeight="31.0" prefWidth="295.0" promptText="Select" />
+                        <Label focusTraversable="false" layoutX="6.0" layoutY="-2.0" prefHeight="34.0" prefWidth="133.0" text="Department:" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="-2.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="sectionComboBoxOnMarkAttendence" layoutX="6.0" layoutY="80.0" prefHeight="31.0" prefWidth="295.0" promptText="Select" />
+                        <Label focusTraversable="false" layoutX="7.0" layoutY="54.0" prefHeight="34.0" prefWidth="133.0" text="Section:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="semsterComboBoxOnMarkAttendence" layoutX="6.0" layoutY="135.0" prefHeight="31.0" prefWidth="295.0" promptText="Select" />
+                        <Label focusTraversable="false" layoutX="9.0" layoutY="109.0" prefHeight="34.0" prefWidth="133.0" text="Semester:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="datePickerOnMarkAttendence" editable="false" layoutX="6.0" layoutY="187.0" prefHeight="31.0" prefWidth="218.0" />
+                        <Label focusTraversable="false" layoutX="6.0" layoutY="162.0" prefHeight="34.0" prefWidth="133.0" text="Date:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="loadButtonOnMarkAttendence" layoutX="180.0" layoutY="187.0" mnemonicParsing="false" onAction="#loadAttendenceTable" prefHeight="31.0" prefWidth="70.0" text="Load" textAlignment="CENTER" wrapText="true" AnchorPane.rightAnchor="6.0">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="submitButtonOnMarkAttendence" layoutX="6.0" layoutY="287.0" mnemonicParsing="false" onAction="#submitMarkAttendence" prefHeight="34.0" prefWidth="295.0" text="Submit">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="viewAttendenceAnchorPane" layoutX="13.0" layoutY="272.0" prefHeight="334.0" prefWidth="306.0" visible="false">
+                     <children>
+                        <ComboBox fx:id="departmentComboBoxOnViewAttendence" layoutX="6.0" layoutY="25.0" onAction="#loadSections" prefHeight="31.0" prefWidth="295.0" promptText="Select" />
+                        <Label focusTraversable="false" layoutX="6.0" layoutY="-2.0" prefHeight="34.0" prefWidth="133.0" text="Department:" AnchorPane.leftAnchor="6.0" AnchorPane.topAnchor="-2.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="sectionComboBoxOnViewAttendence" layoutX="6.0" layoutY="80.0" prefHeight="31.0" prefWidth="295.0" promptText="Select" />
+                        <Label focusTraversable="false" layoutX="7.0" layoutY="54.0" prefHeight="34.0" prefWidth="133.0" text="Section:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="semesterComboBoxOnViewAttendence" layoutX="6.0" layoutY="135.0" prefHeight="31.0" prefWidth="295.0" promptText="Select" />
+                        <Label focusTraversable="false" layoutX="9.0" layoutY="109.0" prefHeight="34.0" prefWidth="133.0" text="Semester:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="fromDatePickerOnViewAttendence" editable="false" layoutX="6.0" layoutY="187.0" onAction="#restrictToDatePicker" prefHeight="31.0" prefWidth="140.0" />
+                        <Label focusTraversable="false" layoutX="6.0" layoutY="162.0" prefHeight="34.0" prefWidth="133.0" text="From:">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <DatePicker fx:id="toDatePickerOnViewAttendence" disable="true" editable="false" layoutX="158.0" layoutY="187.0" prefHeight="31.0" prefWidth="140.0" AnchorPane.rightAnchor="5.0" />
+                        <Label focusTraversable="false" layoutX="158.0" layoutY="162.0" prefHeight="34.0" prefWidth="133.0" text="To:" AnchorPane.leftAnchor="163.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="loadButtonOnViewAttendence" layoutX="6.0" layoutY="287.0" mnemonicParsing="false" onAction="#loadViewAttendemce" prefHeight="34.0" prefWidth="295.0" text="Load" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="5.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <TableView fx:id="tableOnAttendenceManagement" editable="true" layoutX="14.0" layoutY="60.0" prefHeight="546.0" prefWidth="750.0" AnchorPane.rightAnchor="12.0">
+                     <columns>
+                        <TableColumn fx:id="rollNumberColumnOnMarkAttendence" editable="false" prefWidth="73.0" text="Roll No" />
+                        <TableColumn fx:id="nameColumnOnMarkAttendence" editable="false" prefWidth="164.0" text="Name" />
+                        <TableColumn fx:id="isPresentColumnOnMarkAttendence" minWidth="4.0" prefWidth="50.0" text="Present" />
+                        <TableColumn fx:id="day1Column" prefWidth="71.0" text="day1" />
+                        <TableColumn fx:id="day2Column" prefWidth="71.0" text="day2" />
+                        <TableColumn fx:id="day3Column" prefWidth="71.0" text="day3" />
+                        <TableColumn fx:id="day4Column" prefWidth="71.0" text="day4" />
+                        <TableColumn fx:id="day5Column" prefWidth="71.0" text="day5" />
+                        <TableColumn fx:id="day6Column" prefWidth="71.0" text="day6" />
+                        <TableColumn fx:id="day7Column" prefWidth="71.0" text="day7" />
+                     </columns>
+                  </TableView>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="profileManagementAnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="622.0" prefWidth="1097.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Button fx:id="editProfileButtonOnProfileManagement" layoutX="13.0" layoutY="154.0" mnemonicParsing="false" onAction="#editEnable" prefHeight="54.0" prefWidth="306.0" text="Edit Profile">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="logoutButtonOnProfileManagement" layoutX="13.0" layoutY="213.0" mnemonicParsing="false" onAction="#logout" prefHeight="54.0" prefWidth="306.0" text="Logout">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="deleteAccountButtonOnProfileManagemnt" layoutX="13.0" layoutY="272.0" mnemonicParsing="false" onAction="#deleteAccount" prefHeight="54.0" prefWidth="306.0" text="Delete Account">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Button>
+                  <Label layoutX="62.0" layoutY="588.0" text="Feedbacks or Suggestions?" />
+                  <Hyperlink fx:id="contactUsHyperlinkOnProfileManagement" layoutX="205.0" layoutY="585.0" onAction="#contactDeveloper" text="Contact Us" />
+                  <ImageView fx:id="imageForDeleteActionOnProfileManagement" fitHeight="255.0" fitWidth="306.0" layoutX="14.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true" />
+                  <AnchorPane fx:id="editProfileAchorPaneOnProfileManagement" layoutX="333.0" layoutY="54.0" prefHeight="558.0" prefWidth="765.0" style="-fx-background-color: pink;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Rectangle fx:id="dpImageRectangleOnEditProfile" arcHeight="5.0" arcWidth="5.0" fill="#fdff1f" height="363.0" layoutX="42.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" width="246.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#212eff" height="363.0" layoutX="28.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" width="246.0" />
+                        <Label fx:id="nameLabelOnEditProfile" layoutX="316.0" layoutY="89.0" prefHeight="126.0" prefWidth="427.0" text="FirstName LastName" wrapText="true" AnchorPane.leftAnchor="316.0">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="designationLabelOnEditProfile" layoutX="316.0" layoutY="200.0" prefHeight="17.0" prefWidth="427.0" text="Designation" AnchorPane.leftAnchor="316.0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="collegeNameOnEditProfile" layoutX="316.0" layoutY="244.0" prefHeight="17.0" prefWidth="427.0" text="Ambedkar DSEU Shakarpur Campus I" AnchorPane.leftAnchor="316.0">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="mailLabelOnEditProfile" layoutX="316.0" layoutY="399.0" prefHeight="17.0" prefWidth="427.0" text="mailoftheteacher@123gmail.com" AnchorPane.leftAnchor="316.0" />
+                        <Label fx:id="phoneNumberLabelOnEditProfile" layoutX="316.0" layoutY="423.0" prefHeight="17.0" prefWidth="427.0" text="+91-7217774529" AnchorPane.leftAnchor="316.0" />
+                        <TextField fx:id="nameTextFieldOnEditProfile" layoutX="316.0" layoutY="108.0" prefHeight="92.0" prefWidth="377.0" promptText="Enter Name">
+                           <font>
+                              <Font size="40.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="designationTextFeildOnEditProfile" layoutX="316.0" layoutY="203.0" prefHeight="25.0" prefWidth="377.0" promptText="Enter Designation and Branch">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="collegeNameTextFeildOnEditProfile" layoutX="316.0" layoutY="242.0" prefHeight="25.0" prefWidth="377.0" promptText="Enter College Name" />
+                        <TextField fx:id="emailTextFieldOnEditProfile" layoutX="316.0" layoutY="395.0" prefHeight="25.0" prefWidth="295.0" promptText="Enter Email" />
+                        <TextField fx:id="phoneNumberTextFieldOnEditProfile" layoutX="316.0" layoutY="424.0" prefHeight="25.0" prefWidth="295.0" promptText="Enter Phone" />
+                        <Button fx:id="saveButtonOnEditProfile" layoutX="587.0" layoutY="504.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="Save">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="cancelButtonOnEditProfile" layoutX="667.0" layoutY="504.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="Cancel">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <Button fx:id="attendenceManagementButton" layoutX="6.0" layoutY="59.0" mnemonicParsing="false" onAction="#showAttendenceManagementPane" prefHeight="44.0" prefWidth="102.0" text="Attendence Management" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="studentManagementButton" layoutX="112.0" layoutY="59.0" mnemonicParsing="false" onAction="#showAndPopulateStudentViewTable" prefHeight="44.0" prefWidth="102.0" text="Student Management" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="profileManagementButton" layoutX="218.0" layoutY="59.0" mnemonicParsing="false" onAction="#setProfileManagement" prefHeight="44.0" prefWidth="102.0" text="Profile Management" textAlignment="CENTER" wrapText="true" />
+         </children>
+      </AnchorPane>
+   </children>
+</StackPane>
