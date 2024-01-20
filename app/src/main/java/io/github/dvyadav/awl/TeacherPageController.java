@@ -1,9 +1,12 @@
 package io.github.dvyadav.awl;
 
 import java.awt.Desktop;
+import java.io.File;
 import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -181,6 +184,8 @@ public class TeacherPageController implements Initializable {
     @FXML
     Rectangle dpImageRectangleOnEditProfile;
     @FXML
+    Image dpImage = new Image(getClass().getResourceAsStream("images/user-data/userImage.jpg"));
+    @FXML
     Label nameLabelOnEditProfile;
     @FXML
     Label designationLabelOnEditProfile;
@@ -216,6 +221,80 @@ public class TeacherPageController implements Initializable {
     Button profileManagementButton;
     @FXML
     Label infoLabelOnStudentMangement;
+
+
+    // choosing pho from deviec
+    public void selectImage(ActionEvent e){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
+        File imageFile = fileChooser.showOpenDialog(((Stage)((Node)e.getSource()).getScene().getWindow()));
+
+        // setting image to dp
+        if(imageFile != null){
+            dpImage = new Image(imageFile.toURI().toString());
+            dpImageRectangleOnEditProfile.setFill(new ImagePattern(dpImage));
+        }
+    }
+
+
+    // saving profile changes
+    public void saveProfileChanges(ActionEvent e){
+
+        // geting all the values from edit profile
+        String name = nameTextFieldOnEditProfile.getText();
+        String designation = designationTextFeildOnEditProfile.getText();
+        String collegeName = collegeNameTextFeildOnEditProfile.getText();
+        String email = emailTextFieldOnEditProfile.getText();
+        Long phoneNumber = Long.parseLong(phoneNumberTextFieldOnEditProfile.getText());
+
+
+        // validating and saving all changes
+        if(!name.isEmpty()){
+            if(!designation.isEmpty()){
+                if(!collegeName.isEmpty()){
+                    if(isEmailValid()){
+                        if(isPhoneNumberValid()){
+                            // sending information to save in db 
+                            fromDatabase.setProfileDataOfUser(usernameOrTableNameLabel.getText(), name, designation, collegeName, email, phoneNumber);
+                            setProfileManagement(e);
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+
+    // validating number feild
+    public boolean isPhoneNumberValid(){
+        Pattern pattern =  Pattern.compile("^[0-9]{10}$");
+        if(!phoneNumberTextFieldOnEditProfile.getText().isEmpty()){
+            Matcher match = pattern.matcher(phoneNumberTextFieldOnEditProfile.getText());
+            return match.matches();
+        }
+        return false;
+    }
+
+
+    // validating email feild
+    public boolean isEmailValid(){
+        Pattern pattern =  Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
+        if(!emailTextFieldOnEditProfile.getText().isEmpty()){
+            Matcher match = pattern.matcher(emailTextFieldOnEditProfile.getText());
+            return match.matches();
+        }
+        return false;
+    }
+
+    // cancelling profile changes
+    public void cancelProfileChanges(ActionEvent e){
+
+        // loading profile managemnet anchoir pane
+        setProfileManagement(e);
+    }
 
     // opening mail contact developer action 
     public void contactDeveloper(ActionEvent e){
@@ -350,7 +429,7 @@ public class TeacherPageController implements Initializable {
         changeDpImageButtononEditProfile.setVisible(true);
         saveButtonOnEditProfile.setVisible(true);
         cancelButtonOnEditProfile.setVisible(true);
-        
+
         // showing/ unhiding  the TextFeilds
         nameTextFieldOnEditProfile.setVisible(true);
         designationTextFeildOnEditProfile.setVisible(true);
@@ -364,25 +443,27 @@ public class TeacherPageController implements Initializable {
     public void setProfileManagement(ActionEvent e){
         
         // setting Dp picture
-        dpImageRectangleOnEditProfile.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("images/user-data/userImage.jpg"))));
+        dpImageRectangleOnEditProfile.setFill(new ImagePattern(dpImage));
 
 
         // setting name desingnation etc
-        nameLabelOnEditProfile.setText(fromDatabase.getNameOfUser(usernameOrTableNameLabel.getText()));
-        designationLabelOnEditProfile.setText(fromDatabase.getDesignation(usernameOrTableNameLabel.getText()));
-        collegeNameOnEditProfile.setText(fromDatabase.getCollege(usernameOrTableNameLabel.getText()));
-        mailLabelOnEditProfile.setText(fromDatabase.getEmail(usernameOrTableNameLabel.getText()));
-        phoneNumberLabelOnEditProfile.setText(fromDatabase.getPhoneNumber(usernameOrTableNameLabel.getText()));
+        String[] userData = new String[5];
+        userData = fromDatabase.getProfileDataOfTheUser(usernameOrTableNameLabel.getText());
+        nameLabelOnEditProfile.setText(userData[0]);
+        designationLabelOnEditProfile.setText(userData[1]);
+        collegeNameOnEditProfile.setText(userData[2]);
+        mailLabelOnEditProfile.setText(userData[3]);
+        phoneNumberLabelOnEditProfile.setText(userData[4]);
 
-        // hiding file choosing button
-        changeDpImageButtononEditProfile.setVisible(false);
         // hiding textFeilds for editing
         nameTextFieldOnEditProfile.setVisible(false);
         designationTextFeildOnEditProfile.setVisible(false);
         collegeNameTextFeildOnEditProfile.setVisible(false);
         emailTextFieldOnEditProfile.setVisible(false);
         phoneNumberTextFieldOnEditProfile.setVisible(false);
-
+        
+        // hiding file choosing button
+        changeDpImageButtononEditProfile.setVisible(false);
         // hiding save OR cancel buttons
         saveButtonOnEditProfile.setVisible(false);
         cancelButtonOnEditProfile.setVisible(false);

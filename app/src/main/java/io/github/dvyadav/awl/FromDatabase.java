@@ -25,10 +25,31 @@ public class FromDatabase {
         // NOTE: the remote server do not allow prolonged connections, hence created connection each time of query excetution
     }
 
+
+    // savinf profile data into the db
+    public void setProfileDataOfUser(String username, String name, String designation, String collegeName, String email, Long phoneNumber){
+        try {
+           connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        statement = connection.prepareStatement("UPDATE Credential_Table  SET Name = ?, Designation = ?, College_Name = ?, Email = ? , Phone_Number = ? WHERE username = ?");
+        statement.setString(1, name);
+        statement.setString(2, designation);
+        statement.setString(3, collegeName);
+        statement.setString(4, email);
+        statement.setLong(5, phoneNumber);
+        statement.setString(6, username);
+
+        System.out.println(statement.toString());
+        statement.executeUpdate();
+
+       } catch (Exception e) {
+        System.out.println("Exception in SETPROFILEDATA");
+        e.printStackTrace();
+       }
+    }
+
     // deleteing user credentials
     public boolean deleteUserAccount(String userName){
-        userName = dbSuitableStringOf(userName);
-
+        
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
             // deleting credentials
@@ -36,7 +57,8 @@ public class FromDatabase {
             statement.setString(1, userName);
             System.out.println(statement.toString());
             statement.executeUpdate();
-
+            
+            userName = dbSuitableStringOf(userName);
             // deleting user's personal table
             statement = connection.prepareStatement("DROP TABLE "+userName+"");
             System.out.println(statement.toString());
@@ -53,118 +75,29 @@ public class FromDatabase {
 
 
     // retrieving number of the User
-    public String getPhoneNumber(String userName){
-        userName = dbSuitableStringOf(userName);
-        String number = null;
+    public String[] getProfileDataOfTheUser(String userName){
+        String[] data = new String[5];
         try {
             connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            statement = connection.prepareStatement("SELECT Phone_Number FROM Credential_Table WHERE  username = \'"+userName+"\'");
+            statement = connection.prepareStatement("SELECT Name, Designation, College_Name, Email, Phone_Number FROM Credential_Table WHERE  username = \'"+userName+"\'");
 
             System.out.println(statement.toString());
             resultSet = statement.executeQuery();
 
+
             while (resultSet.next()) {
-                number = resultSet.getString("Phone_Number");
+                for(int i =0; i < data.length; i++){
+                    data[i] = resultSet.getString(i+1);
+                }
             }
 
         } catch (Exception e) {
             System.out.println("Exception in GET Phone_Number");
         }
 
-        return number;
+        return data;
     }
 
-    // retrieving email of the User
-    public String getEmail(String userName){
-        userName = dbSuitableStringOf(userName);
-        String email = null;
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            statement = connection.prepareStatement("SELECT Email FROM Credential_Table WHERE  username = \'"+userName+"\'");
-
-            System.out.println(statement.toString());
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                email = resultSet.getString("Email");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Exception in GET Email");
-        }
-
-        return email;
-    }
-
-    
-    // retrieving college of the User
-    public String getCollege(String userName){
-        userName = dbSuitableStringOf(userName);
-        String college = null;
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            statement = connection.prepareStatement("SELECT College_Name FROM Credential_Table WHERE  username = \'"+userName+"\'");
-
-            System.out.println(statement.toString());
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                college = resultSet.getString("College_Name");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Exception in GET College_Name");
-        }
-
-        return college;
-    }
-
-
-
-    // retrieving designation of the User
-     public String getDesignation(String userName){
-        userName = dbSuitableStringOf(userName);
-        String designation = null;
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            statement = connection.prepareStatement("SELECT Designation FROM Credential_Table WHERE  username = \'"+userName+"\'");
- 
-            System.out.println(statement.toString());
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                designation = resultSet.getString("Designation");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Exception in GET Designation");
-        }
-
-        return designation;
-    }
-
-    
-    // retrieving Name of the User
-    public String getNameOfUser(String userName){
-        userName = dbSuitableStringOf(userName);
-        String name = null;
-        try {
-            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-            statement = connection.prepareStatement("SELECT Name FROM Credential_Table WHERE  username = \'"+userName+"\'");
- 
-            System.out.println(statement.toString());
-            resultSet = statement.executeQuery();
-
-            while (resultSet.next()) {
-                name = resultSet.getString("Name");
-            }
-
-        } catch (Exception e) {
-            System.out.println("Exception in GET NAME OF USER");
-        }
-
-        return name;
-    }
 
     // returns 7 days of student attendence
     public ObservableList<StudentModel> retrieveAttendenceOf7Days(String tableName, String department, String section, int semester, LocalDate dateInStringAsYYYY_MM_DD){
@@ -542,6 +475,8 @@ public class FromDatabase {
             statement.setString(3, "College/University Name");
             statement.setString(4, "Your Email and Phone Number");
             statement.setInt(5, 1234567890);
+
+            System.out.println(statement.toString());
             statement.executeUpdate();
 
 

@@ -297,7 +297,7 @@
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cdcdcd" height="363.0" layoutX="39.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
                         <Rectangle fx:id="dpImageRectangleOnEditProfile" arcHeight="5.0" arcWidth="5.0" fill="#212eff" height="363.0" layoutX="28.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
-                        <Button fx:id="changeDpImageButtononEditProfile" layoutX="251.0" layoutY="65.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" text="DP">
+                        <Button fx:id="changeDpImageButtononEditProfile" layoutX="251.0" layoutY="65.0" mnemonicParsing="false" onAction="#selectImage" prefHeight="35.0" prefWidth="35.0" text="DP">
                            <font>
                               <Font size="8.0" />
                            </font>
@@ -332,12 +332,12 @@
                         <TextField fx:id="collegeNameTextFeildOnEditProfile" layoutX="316.0" layoutY="242.0" prefHeight="25.0" prefWidth="377.0" promptText="Enter College Name" />
                         <TextField fx:id="emailTextFieldOnEditProfile" layoutX="316.0" layoutY="395.0" prefHeight="25.0" prefWidth="295.0" promptText="Enter Email" />
                         <TextField fx:id="phoneNumberTextFieldOnEditProfile" layoutX="316.0" layoutY="424.0" prefHeight="25.0" prefWidth="295.0" promptText="Enter Phone" />
-                        <Button fx:id="saveButtonOnEditProfile" layoutX="587.0" layoutY="504.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="Save">
+                        <Button fx:id="saveButtonOnEditProfile" layoutX="587.0" layoutY="504.0" mnemonicParsing="false" onAction="#saveProfileChanges" prefHeight="34.0" prefWidth="76.0" text="Save">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Button>
-                        <Button fx:id="cancelButtonOnEditProfile" layoutX="667.0" layoutY="504.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="76.0" text="Cancel">
+                        <Button fx:id="cancelButtonOnEditProfile" layoutX="667.0" layoutY="504.0" mnemonicParsing="false" onAction="#cancelProfileChanges" prefHeight="34.0" prefWidth="76.0" text="Cancel">
                            <font>
                               <Font size="15.0" />
                            </font>
