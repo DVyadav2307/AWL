@@ -318,6 +318,7 @@ public class FromDatabase {
 
     // return student details from DB as observable list
     public ObservableList<StudentModel> retrieveStudentsData(String tableName){
+        tableName = dbSuitableStringOf(tableName);
 
         ObservableList<StudentModel> studentDataList = FXCollections.observableArrayList();
         try {
