@@ -19,12 +19,12 @@
       <AnchorPane focusTraversable="true" prefHeight="200.0" prefWidth="200.0">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c6c6c6" height="54.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1097.0" />
-            <Label fx:id="usernameOrTableNameLabel" alignment="CENTER" layoutX="963.0" layoutY="5.0" prefHeight="44.0" prefWidth="120.0" text="User Name">
+            <Label fx:id="usernameOrTableNameLabel" alignment="CENTER_RIGHT" layoutX="963.0" layoutY="5.0" prefHeight="44.0" prefWidth="224.0" text="User Name" AnchorPane.rightAnchor="14.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="408.0" layoutY="44.0" prefHeight="126.0" prefWidth="602.0" text="DashBoard">
+            <Label alignment="CENTER" layoutX="408.0" layoutY="44.0" prefHeight="126.0" prefWidth="602.0" text="---------">
                <font>
                   <Font size="49.0" />
                </font>
@@ -293,10 +293,15 @@
                   <Label layoutX="62.0" layoutY="588.0" text="Feedbacks or Suggestions?" />
                   <Hyperlink fx:id="contactUsHyperlinkOnProfileManagement" layoutX="205.0" layoutY="585.0" onAction="#contactDeveloper" text="Contact Us" />
                   <ImageView fx:id="imageForDeleteActionOnProfileManagement" fitHeight="255.0" fitWidth="306.0" layoutX="14.0" layoutY="334.0" pickOnBounds="true" preserveRatio="true" />
-                  <AnchorPane fx:id="editProfileAchorPaneOnProfileManagement" layoutX="333.0" layoutY="54.0" prefHeight="558.0" prefWidth="765.0" style="-fx-background-color: pink;" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0">
+                  <AnchorPane fx:id="editProfileAchorPaneOnProfileManagement" layoutX="333.0" layoutY="54.0" prefHeight="558.0" prefWidth="765.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <Rectangle fx:id="dpImageRectangleOnEditProfile" arcHeight="5.0" arcWidth="5.0" fill="#fdff1f" height="363.0" layoutX="42.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" width="246.0" />
-                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#212eff" height="363.0" layoutX="28.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" width="246.0" />
+                        <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cdcdcd" height="363.0" layoutX="39.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
+                        <Rectangle fx:id="dpImageRectangleOnEditProfile" arcHeight="5.0" arcWidth="5.0" fill="#212eff" height="363.0" layoutX="28.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
+                        <Button fx:id="changeDpImageButtononEditProfile" layoutX="251.0" layoutY="65.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0" text="DP">
+                           <font>
+                              <Font size="8.0" />
+                           </font>
+                        </Button>
                         <Label fx:id="nameLabelOnEditProfile" layoutX="316.0" layoutY="89.0" prefHeight="126.0" prefWidth="427.0" text="FirstName LastName" wrapText="true" AnchorPane.leftAnchor="316.0">
                            <font>
                               <Font size="40.0" />

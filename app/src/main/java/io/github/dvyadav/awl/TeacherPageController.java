@@ -1,10 +1,9 @@
 package io.github.dvyadav.awl;
 
+import java.awt.Desktop;
 import java.net.URI;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import java.awt.Desktop;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,9 +27,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -176,6 +177,8 @@ public class TeacherPageController implements Initializable {
 
     // following controls are on editProfileAchorPane
     @FXML
+    Button changeDpImageButtononEditProfile;
+    @FXML
     Rectangle dpImageRectangleOnEditProfile;
     @FXML
     Label nameLabelOnEditProfile;
@@ -201,7 +204,6 @@ public class TeacherPageController implements Initializable {
     Button saveButtonOnEditProfile;
     @FXML
     Button cancelButtonOnEditProfile;
-    /* not in fxml */ FileChooser dpFileChooser = new FileChooser();
 
     // following are teacher interface background componets
     @FXML
@@ -336,6 +338,7 @@ public class TeacherPageController implements Initializable {
     // showing interface for profile editing
     public void editEnable(ActionEvent e){
 
+
         // setting text feild values to the previous values from labels
         nameTextFieldOnEditProfile.setText(nameLabelOnEditProfile.getText());
         designationTextFeildOnEditProfile.setText(designationLabelOnEditProfile.getText());
@@ -343,6 +346,11 @@ public class TeacherPageController implements Initializable {
         emailTextFieldOnEditProfile.setText(mailLabelOnEditProfile.getText());
         phoneNumberTextFieldOnEditProfile.setText(phoneNumberLabelOnEditProfile.getText());
 
+        // unhiding buttons on edit profile
+        changeDpImageButtononEditProfile.setVisible(true);
+        saveButtonOnEditProfile.setVisible(true);
+        cancelButtonOnEditProfile.setVisible(true);
+        
         // showing/ unhiding  the TextFeilds
         nameTextFieldOnEditProfile.setVisible(true);
         designationTextFeildOnEditProfile.setVisible(true);
@@ -354,6 +362,10 @@ public class TeacherPageController implements Initializable {
 
     // settting and showing profileManagement
     public void setProfileManagement(ActionEvent e){
+        
+        // setting Dp picture
+        dpImageRectangleOnEditProfile.setFill(new ImagePattern(new Image(getClass().getResourceAsStream("images/user-data/userImage.jpg"))));
+
 
         // setting name desingnation etc
         nameLabelOnEditProfile.setText(fromDatabase.getNameOfUser(usernameOrTableNameLabel.getText()));
@@ -362,7 +374,8 @@ public class TeacherPageController implements Initializable {
         mailLabelOnEditProfile.setText(fromDatabase.getEmail(usernameOrTableNameLabel.getText()));
         phoneNumberLabelOnEditProfile.setText(fromDatabase.getPhoneNumber(usernameOrTableNameLabel.getText()));
 
-
+        // hiding file choosing button
+        changeDpImageButtononEditProfile.setVisible(false);
         // hiding textFeilds for editing
         nameTextFieldOnEditProfile.setVisible(false);
         designationTextFeildOnEditProfile.setVisible(false);
@@ -376,6 +389,10 @@ public class TeacherPageController implements Initializable {
 
         // hiding delete action representation image
         imageForDeleteActionOnProfileManagement.setVisible(false);
+
+
+        // hiding other interfaces
+        initialize(null, null);
 
         // showing profile interface
         profileManagementAnchorPane.setVisible(true);
