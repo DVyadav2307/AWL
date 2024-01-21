@@ -9,16 +9,10 @@
     -fx-background-repeat: no-repeat;
 }
 
-.textfeildOnLoginSignup:focused{
-    -fx-border-width: 2px;
-    -fx-border-color: #161837;
-    -fx-border-radius: 7;
-}
-
 .textfeildOnLoginSignup{
     -fx-text-fill: #161837;
     -fx-font-size: 17px;
-
+    
     -fx-background-color: #ffd7ff ;
     -fx-background-radius: 7;
 }
@@ -28,21 +22,27 @@
     -fx-border-radius: 7;
 }
 
+.textfeildOnLoginSignup:focused{
+    -fx-border-width: 2px;
+    -fx-border-color: #161837;
+    -fx-border-radius: 7;
+}
+
 .buttonOnloginSignUp{
-    -fx-text-fill: #161837;
+    -fx-text-fill: #BF9DBF;
     -fx-font-size: 17px;
 
-    -fx-background-color: #BF9DBF ;
+    -fx-background-color: #161837 ;
     -fx-background-radius: 7;
 }
 
 .buttonOnloginSignUp:hover{
-    -fx-background-color: #161837 ;
-    -fx-text-fill: #BF9DBF;
+    -fx-background-color: #BF9DBF ;
+    -fx-text-fill: #161837;
 
 }
 .buttonOnloginSignUp:pressed{
-    -fx-background-color: #BF9DBF ;
-    -fx-text-fill: #161837;
+    -fx-background-color: #161837 ;
+    -fx-text-fill: #BF9DBF;
 
 }

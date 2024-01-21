@@ -6,6 +6,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.shape.Circle?>
@@ -14,10 +16,20 @@
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" styleClass="setBackground" stylesheets="@All-In-one.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.dvyadav.awl.LoginPageController">
    <children>
-      <AnchorPane fx:id="loginAnchorPane" focusTraversable="true" prefHeight="650.0" prefWidth="400.0" stylesheets="@All-In-one.css">
+      <AnchorPane fx:id="loginAnchorPane" focusTraversable="true" prefHeight="650.0" prefWidth="400.0">
          <children>
             <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="292.0" layoutX="37.0" layoutY="200.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="326.0" />
-            <Label fx:id="alertInfoLabelOnLoginPage" layoutX="50.0" layoutY="211.0" prefHeight="40.0" prefWidth="300.0" text="Incorrect Username or Password" textFill="#161837" visible="false">
+            <ImageView fitHeight="85.0" fitWidth="72.0" layoutX="166.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/interface/NerdyOwl.gif" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="erorImageOnLoginPage" fitHeight="34.0" fitWidth="36.0" layoutX="51.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/interface/warning.gif" />
+               </image>
+            </ImageView>
+            <Label fx:id="alertInfoLabelOnLoginPage" focusTraversable="false" layoutX="92.0" layoutY="211.0" prefHeight="40.0" prefWidth="255.0" text="Eror messege3 here" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -37,24 +49,31 @@
                   <Font size="15.0" />
                </font>
             </TextField>
-            <CheckBox fx:id="showPasswordCheckBoxOnLoginPage" layoutX="50.0" layoutY="353.0" mnemonicParsing="false" onAction="#showAndHidePassword" style="-fx-text-fill: #161837;" text="Show Password" textFill="WHITE">
-               <font>
-                  <Font name="Comic Sans MS" size="12.0" />
-               </font></CheckBox>
+            <CheckBox fx:id="showPasswordCheckBoxOnLoginPage" layoutX="50.0" layoutY="353.0" mnemonicParsing="false" onAction="#showAndHidePassword" style="-fx-text-fill: #161837;" text="Show Password" textFill="WHITE" />
             <Button fx:id="LginButtonOnLoginPage" layoutX="50.0" layoutY="405.0" mnemonicParsing="false" onAction="#authenticateLogin" prefHeight="40.0" prefWidth="300.0" styleClass="buttonOnloginSignUp" text="Login">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
             <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="23.0" layoutX="69.0" layoutY="607.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="236.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="608.0" text="Not Registered Yet?" />
+            <Label alignment="CENTER_RIGHT" focusTraversable="false" layoutX="80.0" layoutY="608.0" text="Not Registered Yet?" />
             <Circle fill="#161837" layoutX="200.0" layoutY="619.0" radius="2.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
             <Hyperlink fx:id="registerHereHyperlinkOnLoginPage" layoutX="212.0" layoutY="606.0" onAction="#switchPage" text="Register Here!" textFill="#0011ff" />
          </children></AnchorPane>
-      <AnchorPane fx:id="signUpAnchorPane" focusTraversable="true" layoutX="10.0" layoutY="10.0" prefHeight="650.0" prefWidth="400.0" visible="false">
+      <AnchorPane fx:id="signUpAnchorPane" focusTraversable="true" layoutX="10.0" layoutY="10.0" prefHeight="650.0" prefWidth="400.0">
          <children>
             <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="292.0" layoutX="37.0" layoutY="200.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="326.0" />
-            <Label fx:id="alertInfoLabelOnSignupPage" layoutX="50.0" layoutY="211.0" prefHeight="40.0" prefWidth="300.0" text="Password didn't matched" textFill="#161837" visible="false">
+            <ImageView fitHeight="85.0" fitWidth="72.0" layoutX="166.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/interface/NerdyOwl.gif" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="errorImageOnSignupPage" fitHeight="34.0" fitWidth="36.0" layoutX="51.0" layoutY="212.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/interface/warning.gif" />
+               </image>
+            </ImageView>
+            <Label fx:id="alertInfoLabelOnSignupPage" focusTraversable="false" layoutX="92.0" layoutY="211.0" prefHeight="40.0" prefWidth="255.0" text="Error messege here" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
@@ -69,18 +88,18 @@
                   <Font size="15.0" />
                </font>
             </PasswordField>
-            <Button fx:id="registerButtonOnSignupPage" layoutX="50.0" layoutY="405.0" mnemonicParsing="false" onAction="#registerAndRedirect" prefHeight="40.0" prefWidth="300.0" styleClass="buttonOnloginSignUp" text="Register">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
             <PasswordField fx:id="confirmPasswordFeildOnSignupPage" layoutX="50.0" layoutY="349.0" onKeyTyped="#checkIfMatched" prefHeight="40.0" prefWidth="300.0" promptText="Confirm Password" styleClass="textfeildOnLoginSignup">
                <font>
                   <Font size="15.0" />
                </font>
             </PasswordField>
+            <Button fx:id="registerButtonOnSignupPage" layoutX="50.0" layoutY="405.0" mnemonicParsing="false" onAction="#registerAndRedirect" prefHeight="40.0" prefWidth="300.0" styleClass="buttonOnloginSignUp" text="Register">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Button>
             <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="23.0" layoutX="69.0" layoutY="607.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="236.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="608.0" text="Already Registered ?" />
+            <Label alignment="CENTER_RIGHT" focusTraversable="false" layoutX="80.0" layoutY="608.0" text="Already Registered ?" />
             <Circle layoutX="200.0" layoutY="619.0" radius="2.0" stroke="#161837" strokeType="INSIDE" />
             <Hyperlink fx:id="loginHereHyperlinkOnSignupPage" layoutX="212.0" layoutY="606.0" onAction="#switchPage" text="Login Here!" textFill="#0011ff" />
          </children>

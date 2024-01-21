@@ -12,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
@@ -25,56 +26,82 @@ import javafx.stage.Stage;
 public class LoginPageController implements Initializable{
 
     FromDatabase fromDatabase = new FromDatabase();
+
+    // following are login pages controls
     
     @FXML
     AnchorPane loginAnchorPane;
-
     @FXML
     AnchorPane signUpAnchorPane;
-
-
     @FXML
     TextField usernameTextFieldOnLoginPage;
-
     @FXML
     PasswordField passwordFieldOnLoginPage;
-
     @FXML
     TextField exposedPasswordTextFieldOnLoginPage;
-
     @FXML
     Label alertInfoLabelOnLoginPage;
-
     @FXML
     CheckBox showPasswordCheckBoxOnLoginPage;
-    
     @FXML
     Button LginButtonOnLoginPage;
-
     @FXML
     Hyperlink registerHereHyperlinkOnLoginPage;
-
+    @FXML
+    ImageView erorImageOnLoginPage;
 
     // following are signupPage nodes
 
     @FXML
     Label alertInfoLabelOnSignupPage;
-
     @FXML
     TextField userNameTextFieldOnSignupPage;
-
     @FXML
     PasswordField passwordFieldOnSignupPage;
-
     @FXML
     PasswordField confirmPasswordFeildOnSignupPage;
-
     @FXML
     Button registerButtonOnSignupPage;
-
     @FXML
     Hyperlink loginHereHyperlinkOnSignupPage;
+    @FXML
+    ImageView errorImageOnSignupPage;
 
+
+    // hide the error messege
+    public void hideError(Object sourceOfEvent){
+        // getting pane from the event source
+        Parent pane = ((Node)sourceOfEvent).getParent();
+
+        if(pane == loginAnchorPane){
+            alertInfoLabelOnLoginPage.setVisible(false);
+            erorImageOnLoginPage.setVisible(false);
+
+        }else if(pane == signUpAnchorPane){
+            alertInfoLabelOnSignupPage.setVisible(false);
+            errorImageOnSignupPage.setVisible(false);
+        }
+    }
+
+
+    // show the error msg
+    public void showError(Object sourceOfEvent, String errorMsg){
+
+        // getting pane of the button or other control
+        Parent pane = ((Node)sourceOfEvent).getParent();
+
+        if(pane == signUpAnchorPane){
+            alertInfoLabelOnSignupPage.setText(errorMsg);
+            alertInfoLabelOnSignupPage.setVisible(true);
+            errorImageOnSignupPage.setVisible(true);
+
+        }else if(pane == loginAnchorPane){
+            alertInfoLabelOnLoginPage.setText(errorMsg);;
+            alertInfoLabelOnLoginPage.setVisible(true);
+            erorImageOnLoginPage.setVisible(true);
+        }
+
+    }
 
     // registers the user and redirects to login page
     public void registerAndRedirect(ActionEvent e) throws Exception{
@@ -84,8 +111,8 @@ public class LoginPageController implements Initializable{
 
             // if username is already used
              if(fromDatabase.isNameOccupied(userNameTextFieldOnSignupPage.getText())){
-                alertInfoLabelOnSignupPage.setText("Username already exists");
-                alertInfoLabelOnSignupPage.setVisible(true);
+                // shoing eror
+                showError( e.getSource(), "Username Already Exists");
              }else{
 
             // if username is unique proceed normally (Adding user)
@@ -115,13 +142,16 @@ public class LoginPageController implements Initializable{
     public boolean checkIfMatched(KeyEvent ke){
         // password matches on both textox
         if(passwordFieldOnSignupPage.getText().equals(confirmPasswordFeildOnSignupPage.getText())){
-            alertInfoLabelOnSignupPage.setVisible(false);
+            // avoiding exception since register and redirect passes null object
+          if (ke != null) {
+            // call get source  only if event is not null
+            hideError(ke.getSource());
+          }
             return true;
         }
         else{
             // password not matches in both textbox
-            alertInfoLabelOnSignupPage.setText("Password didn't match");
-            alertInfoLabelOnSignupPage.setVisible(true);
+           showError(ke.getSource(), "Password didn't match");
             return false;
         }
     }
@@ -148,7 +178,7 @@ public class LoginPageController implements Initializable{
                 }
                 else{
                     // show error on unsuccessfull authentication
-                    alertInfoLabelOnLoginPage.setVisible(true);
+                    showError(e.getSource(), "Incorrect Username or Password");
                 }
 
             }
@@ -199,8 +229,13 @@ public class LoginPageController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        // initialize the app with login screen
         loginAnchorPane.setVisible(true);
         signUpAnchorPane.setVisible(false);
+
+        //hidin error/alert messege
+        hideError(LginButtonOnLoginPage);
+        hideError(registerButtonOnSignupPage);
     }
 
 
