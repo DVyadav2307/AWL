@@ -32,7 +32,7 @@
                   <Font size="15.0" />
                </font>
             </PasswordField>
-            <TextField fx:id="exposedPasswordTextFieldOnLoginPage" focusTraversable="false" layoutX="50.0" layoutY="300.0" onKeyTyped="#updatePasswordFeild" prefHeight="40.0" prefWidth="300.0" promptText="Password" visible="false">
+            <TextField fx:id="exposedPasswordTextFieldOnLoginPage" focusTraversable="false" layoutX="50.0" layoutY="300.0" onKeyTyped="#updatePasswordFeild" prefHeight="40.0" prefWidth="300.0" promptText="Password" styleClass="textfeildOnLoginSignup" visible="false">
                <font>
                   <Font size="15.0" />
                </font>
@@ -47,10 +47,7 @@
                </font>
             </Button>
             <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="23.0" layoutX="69.0" layoutY="607.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="236.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="608.0" text="Not Registered Yet?">
-               <font>
-                  <Font name="Comic Sans MS" size="12.0" />
-               </font></Label>
+            <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="608.0" text="Not Registered Yet?" />
             <Circle fill="#161837" layoutX="200.0" layoutY="619.0" radius="2.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
             <Hyperlink fx:id="registerHereHyperlinkOnLoginPage" layoutX="212.0" layoutY="606.0" onAction="#switchPage" text="Register Here!" textFill="#0011ff" />
          </children></AnchorPane>
@@ -83,10 +80,7 @@
                </font>
             </PasswordField>
             <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="23.0" layoutX="69.0" layoutY="607.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="236.0" />
-            <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="608.0" text="Already Registered ?">
-               <font>
-                  <Font name="Comic Sans MS" size="12.0" />
-               </font></Label>
+            <Label alignment="CENTER_RIGHT" layoutX="80.0" layoutY="608.0" text="Already Registered ?" />
             <Circle layoutX="200.0" layoutY="619.0" radius="2.0" stroke="#161837" strokeType="INSIDE" />
             <Hyperlink fx:id="loginHereHyperlinkOnSignupPage" layoutX="212.0" layoutY="606.0" onAction="#switchPage" text="Login Here!" textFill="#0011ff" />
          </children>

@@ -1,5 +1,10 @@
+*{
+    -fx-font-family: 'Comic Sans MS';
+
+}
+
 .setBackground{
-    -fx-background-image: url('images/interface/background.png');
+    -fx-background-image: url('images/interface/background.gif');
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
 }
@@ -12,7 +17,6 @@
 
 .textfeildOnLoginSignup{
     -fx-text-fill: #161837;
-    -fx-font-family: 'Comic Sans MS';
     -fx-font-size: 17px;
 
     -fx-background-color: #ffd7ff ;
@@ -26,7 +30,6 @@
 
 .buttonOnloginSignUp{
     -fx-text-fill: #161837;
-    -fx-font-family: 'Comic Sans MS';
     -fx-font-size: 17px;
 
     -fx-background-color: #BF9DBF ;
