@@ -28,7 +28,33 @@
             </Label>
             <AnchorPane fx:id="homePageAnchorPane" prefHeight="622.0" prefWidth="1097.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
-                  <ImageView fx:id="photoOfTheDayOnHomePage" fitHeight="572.0" fitWidth="772.0" layoutX="318.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
+                  <Rectangle arcHeight="50.0" arcWidth="50.0" fill="WHITE" height="522.0" layoutX="8.0" layoutY="92.0" opacity="0.7" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1081.0" AnchorPane.rightAnchor="8.0" />
+                  <Rectangle fx:id="apotdImageRectangleOnHomePage" arcHeight="50.0" arcWidth="50.0" fill="DODGERBLUE" height="503.0" layoutX="576.0" layoutY="102.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="503.0" />
+                  <Label alignment="CENTER_RIGHT" layoutX="334.0" layoutY="37.0" prefHeight="44.0" prefWidth="750.0" text="Astronomical Picture of the Day" textFill="#ffd7ff">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="102.0" prefHeight="18.0" prefWidth="503.0" text="Title">
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
+                  </Label>
+                  <Label alignment="TOP_LEFT" layoutX="35.0" layoutY="177.0" prefHeight="363.0" prefWidth="495.0" text="Explanation:" textAlignment="JUSTIFY" wrapText="true">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="35.0" layoutY="566.0" text="Copyright: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="334.0" layoutY="566.0" text="Date: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="studentManagementAnchorPane" layoutX="331.0" layoutY="10.0" prefHeight="622.0" prefWidth="1097.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

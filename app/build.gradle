@@ -26,6 +26,12 @@ javafx{
 dependencies {
    // this is for mysql java connector
     implementation 'mysql:mysql-connector-java:8.0.28'
+    // https://mvnrepository.com/artifact/org.apache.httpcomponents.client5/httpclient5
+    implementation 'org.apache.httpcomponents.client5:httpclient5:5.3'
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation 'org.json:json:20231013'
+
+
 }
 
 application {

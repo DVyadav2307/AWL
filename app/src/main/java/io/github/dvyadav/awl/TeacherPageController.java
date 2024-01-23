@@ -1,5 +1,7 @@
 package io.github.dvyadav.awl;
 
+import java.nio.charset.Charset;
+
 import java.awt.Desktop;
 import java.io.File;
 import java.net.URI;
@@ -7,6 +9,15 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.apache.hc.core5.net.URIBuilder;
+import org.json.JSONObject;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -213,7 +224,15 @@ public class TeacherPageController implements Initializable {
     @FXML
     AnchorPane homePageAnchorPane;
     @FXML
-    ImageView photoOfTheDayOnHomePage;
+    Rectangle apotdImageRectangleOnHomePage;
+    @FXML
+    Label titleLabelOnHomePage;
+    @FXML
+    Label explanationLabelOnHomePage;
+    @FXML
+    Label copyrightLabelOnHomePage;
+    @FXML
+    Label dateLabelOnHomePage;
 
 
     // following are teacher interface background componets
@@ -862,6 +881,67 @@ public class TeacherPageController implements Initializable {
         addStudentAnchorPane.setVisible(true);
     }
 
+
+
+
+    // sets image of the page on homeopage anchorpane
+    public void setHomePage(){
+
+        try {
+            //key and query of the APOTD API
+            final String KEY = "y7MiaLUD633zBMjonafWi2EvL5ebP50lSZx787vk";
+            final String stringQuery = "https://api.nasa.gov/planetary/apod";
+
+            // initializing client
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+
+            // buikding URL to standard form
+            URIBuilder builder = new URIBuilder(stringQuery);
+            builder.setParameter("api_key", KEY);
+            
+            // cretaing a get request
+            HttpGet get = new HttpGet(builder.build());
+            // fetching response
+            CloseableHttpResponse response = httpClient.execute(get);
+            
+            // extracting the object(entity) from the response and ceonverting it into raw string
+            HttpEntity entity = response.getEntity();
+            String rawResponse = EntityUtils.toString(entity, Charset.forName("utf-8"));
+
+            // creating JSON Onject from response String
+            JSONObject jsonObject = new JSONObject(rawResponse);
+
+            // setting the homepage image
+           apotdImageRectangleOnHomePage.setFill(new ImagePattern(new Image(jsonObject.getString("hdurl"))));
+
+            //setting Title of the image
+            titleLabelOnHomePage.setText(jsonObject.getString("title"));
+
+            // setting explanation
+            explanationLabelOnHomePage.setText(jsonObject.getString("explanation"));
+
+            // setting copyright text
+            copyrightLabelOnHomePage.setText("Copyright: "+ jsonObject.getString("copyright"));
+
+            // setting datelabel on homepage
+            dateLabelOnHomePage.setText("Date: "+ jsonObject.getString("date"));
+            
+        
+
+            // setting homepage anchorpane visible
+            homePageAnchorPane.setVisible(true);
+
+        } catch (Exception ex) {
+           System.out.println("Exception on SETTING HOMEPAGE");
+           ex.printStackTrace();
+        }
+        
+    }
+
+
+
+
+
     // hides all of the anchorpanes
     public void hideAllPanes(){
         // hiding  student managemnet
@@ -883,10 +963,15 @@ public class TeacherPageController implements Initializable {
 
         // hding all the panes
         hideAllPanes();
-        
 
+        // setting homepage 
+        setHomePage();
+        
         
     }
+
+
+
 
 
 
