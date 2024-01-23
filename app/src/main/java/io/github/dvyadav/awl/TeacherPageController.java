@@ -183,7 +183,6 @@ public class TeacherPageController implements Initializable {
     Button changeDpImageButtononEditProfile;
     @FXML
     Rectangle dpImageRectangleOnEditProfile;
-    @FXML
     Image dpImage = new Image(getClass().getResourceAsStream("images/user-data/userImage.jpg"));
     @FXML
     Label nameLabelOnEditProfile;
@@ -209,6 +208,13 @@ public class TeacherPageController implements Initializable {
     Button saveButtonOnEditProfile;
     @FXML
     Button cancelButtonOnEditProfile;
+
+    // folowing are the homepage anchorpane controls
+    @FXML
+    AnchorPane homePageAnchorPane;
+    @FXML
+    ImageView photoOfTheDayOnHomePage;
+
 
     // following are teacher interface background componets
     @FXML
@@ -473,7 +479,7 @@ public class TeacherPageController implements Initializable {
 
 
         // hiding other interfaces
-        initialize(null, null);
+        hideAllPanes();
 
         // showing profile interface
         profileManagementAnchorPane.setVisible(true);
@@ -664,7 +670,7 @@ public class TeacherPageController implements Initializable {
         infoLabelOnStudentMangement.setVisible(false);
 
         // hiding other main panes
-        initialize(null, null);
+        hideAllPanes();
         // unhiding attendence managemnet panes
         attendenceManagementAnchorPane.setVisible(true);
 
@@ -756,7 +762,7 @@ public class TeacherPageController implements Initializable {
         semesterComboBoxOnAddStundent.setItems(fromDatabase.getSemester());
 
         // hiding other main  anchoepanes
-        initialize(null, null);
+        hideAllPanes();
         // showing the view student Pane
         studentManagementAnchorPane.setVisible(true);
     }
@@ -856,23 +862,29 @@ public class TeacherPageController implements Initializable {
         addStudentAnchorPane.setVisible(true);
     }
 
+    // hides all of the anchorpanes
+    public void hideAllPanes(){
+        // hiding  student managemnet
+        studentManagementAnchorPane.setVisible(false);
+
+        // hiding attendence management 
+        attendenceManagementAnchorPane.setVisible(false);
+
+        // hiding profile management 
+        profileManagementAnchorPane.setVisible(false);
+
+        //hide homePageAnchorpane
+        homePageAnchorPane.setVisible(false);
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-        // hiding view student whiel home opeining
-        studentManagementAnchorPane.setVisible(false);
-
-        // hiding attendence management while loading home
-        attendenceManagementAnchorPane.setVisible(false);
-
-        // hiding profile management while opeining
-        profileManagementAnchorPane.setVisible(false);
-
-        // Hide iother main panes eqivalent to studentManwementanchorPane
-
+        // hding all the panes
+        hideAllPanes();
         
-        
+
         
     }
 

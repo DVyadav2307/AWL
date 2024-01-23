@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
@@ -24,16 +26,11 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="408.0" layoutY="44.0" prefHeight="126.0" prefWidth="602.0" text="---------">
-               <font>
-                  <Font size="49.0" />
-               </font>
-            </Label>
-            <Label fx:id="infoLabelOnStudentMangement" alignment="CENTER" focusTraversable="false" prefHeight="34.0" prefWidth="317.0" text="Info Label" visible="false" AnchorPane.bottomAnchor="476.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="773.0" AnchorPane.topAnchor="112.0">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
+            <AnchorPane fx:id="homePageAnchorPane" prefHeight="622.0" prefWidth="1097.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fx:id="photoOfTheDayOnHomePage" fitHeight="572.0" fitWidth="772.0" layoutX="318.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true" />
+               </children>
+            </AnchorPane>
             <AnchorPane fx:id="studentManagementAnchorPane" layoutX="331.0" layoutY="10.0" prefHeight="622.0" prefWidth="1097.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="addStudentButton" layoutX="13.0" layoutY="154.0" mnemonicParsing="false" onAction="#showAddStudentPane" prefHeight="54.0" prefWidth="306.0" text="Add Student">
@@ -346,9 +343,44 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <Button fx:id="attendenceManagementButton" layoutX="6.0" layoutY="37.0" mnemonicParsing="false" onAction="#showAttendenceManagementPane" prefHeight="44.0" prefWidth="102.0" styleClass="buttonOnTeacherUI" text="Attendence Management" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="studentManagementButton" layoutX="112.0" layoutY="37.0" mnemonicParsing="false" onAction="#showAndPopulateStudentViewTable" prefHeight="44.0" prefWidth="102.0" styleClass="buttonOnTeacherUI" text="Student Management" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="profileManagementButton" layoutX="218.0" layoutY="37.0" mnemonicParsing="false" onAction="#setProfileManagement" prefHeight="44.0" prefWidth="102.0" styleClass="buttonOnTeacherUI" text="Profile Management" textAlignment="CENTER" wrapText="true" />
+            <Label fx:id="infoLabelOnStudentMangement" alignment="CENTER" focusTraversable="false" prefHeight="34.0" prefWidth="317.0" text="Info Label" visible="false" AnchorPane.bottomAnchor="476.0" AnchorPane.leftAnchor="7.0" AnchorPane.rightAnchor="773.0" AnchorPane.topAnchor="112.0">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="attendenceManagementButton" layoutX="6.0" layoutY="37.0" mnemonicParsing="false" onAction="#showAttendenceManagementPane" prefHeight="44.0" prefWidth="102.0" text="MANAGE ATTENDENCE" textAlignment="CENTER" wrapText="true">
+               <padding>
+                  <Insets left="26.0" />
+               </padding>
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="buttonOnTeacherUI" />
+                  <String fx:value="manageAttendenceButton" />
+               </styleClass></Button>
+            <Button fx:id="studentManagementButton" layoutX="112.0" layoutY="37.0" mnemonicParsing="false" onAction="#showAndPopulateStudentViewTable" prefHeight="44.0" prefWidth="102.0" text="MANAGE STUDENTS" wrapText="true">
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="buttonOnTeacherUI" />
+                  <String fx:value="manageStudentButton" />
+               </styleClass></Button>
+            <Button fx:id="profileManagementButton" layoutX="218.0" layoutY="37.0" mnemonicParsing="false" onAction="#setProfileManagement" prefHeight="44.0" prefWidth="102.0" text="MANAGE PROFILE" wrapText="true">
+               <padding>
+                  <Insets left="35.0" />
+               </padding>
+               <font>
+                  <Font size="11.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="buttonOnTeacherUI" />
+                  <String fx:value="manageProfile" />
+               </styleClass></Button>
          </children>
       </AnchorPane>
    </children>
