@@ -266,11 +266,11 @@ public class TeacherPageController implements Initializable {
     public void saveProfileChanges(ActionEvent e){
 
         // geting all the values from edit profile
-        String name = nameTextFieldOnEditProfile.getText();
-        String designation = designationTextFeildOnEditProfile.getText();
-        String collegeName = collegeNameTextFeildOnEditProfile.getText();
-        String email = emailTextFieldOnEditProfile.getText();
-        Long phoneNumber = Long.parseLong(phoneNumberTextFieldOnEditProfile.getText());
+        String name = nameTextFieldOnEditProfile.getText().trim();
+        String designation = designationTextFeildOnEditProfile.getText().trim();
+        String collegeName = collegeNameTextFeildOnEditProfile.getText().trim();
+        String email = emailTextFieldOnEditProfile.getText().trim();
+        Long phoneNumber = Long.parseLong(phoneNumberTextFieldOnEditProfile.getText().trim());
 
 
         // validating and saving all changes
@@ -280,7 +280,7 @@ public class TeacherPageController implements Initializable {
                     if(isEmailValid()){
                         if(isPhoneNumberValid()){
                             // sending information to save in db 
-                            fromDatabase.setProfileDataOfUser(usernameOrTableNameLabel.getText(), name, designation, collegeName, email, phoneNumber);
+                            fromDatabase.setProfileDataOfUser(usernameOrTableNameLabel.getText().trim(), name, designation, collegeName, email, phoneNumber);
                             setProfileManagement(e);
                             return;
                         }
@@ -297,7 +297,7 @@ public class TeacherPageController implements Initializable {
     public boolean isPhoneNumberValid(){
         Pattern pattern =  Pattern.compile("^[0-9]{10}$");
         if(!phoneNumberTextFieldOnEditProfile.getText().isEmpty()){
-            Matcher match = pattern.matcher(phoneNumberTextFieldOnEditProfile.getText());
+            Matcher match = pattern.matcher(phoneNumberTextFieldOnEditProfile.getText().trim());
             return match.matches();
         }
         return false;
@@ -308,7 +308,7 @@ public class TeacherPageController implements Initializable {
     public boolean isEmailValid(){
         Pattern pattern =  Pattern.compile("^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$");
         if(!emailTextFieldOnEditProfile.getText().isEmpty()){
-            Matcher match = pattern.matcher(emailTextFieldOnEditProfile.getText());
+            Matcher match = pattern.matcher(emailTextFieldOnEditProfile.getText().trim());
             return match.matches();
         }
         return false;
