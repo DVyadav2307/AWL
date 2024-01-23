@@ -50,7 +50,7 @@
 
 
 .setTeacherUIBackground{
-    -fx-background-image: url("images/interface/background-teacher.png");
+    -fx-background-image: url("images/interface/background-teacher.gif");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
 }
