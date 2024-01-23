@@ -3,7 +3,7 @@
 
 }
 
-.setBackground{
+.setLoginBackground{
     -fx-background-image: url('images/interface/background.gif');
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
@@ -42,6 +42,28 @@
 
 }
 .buttonOnloginSignUp:pressed{
+    -fx-background-color: #161837 ;
+    -fx-text-fill: #BF9DBF;
+
+}
+
+.setTeacherUIBackground{
+    -fx-background-image: url("images/interface/background-teacher.png");
+    -fx-background-size: cover;
+    -fx-background-repeat: no-repeat;
+}
+
+.buttonOnTeacherUI{
+    -fx-text-fill: #BF9DBF;
+
+    -fx-background-color: #161837 ;
+    -fx-background-radius: 7;
+}
+.buttonOnTeacherUI:hover{
+    -fx-background-color: #BF9DBF ;
+    -fx-text-fill: #161837;
+}
+.buttonOnTeacherUI:pressed{
     -fx-background-color: #161837 ;
     -fx-text-fill: #BF9DBF;
 

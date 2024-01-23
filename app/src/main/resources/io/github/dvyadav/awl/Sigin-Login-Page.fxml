@@ -14,9 +14,9 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" styleClass="setBackground" stylesheets="@All-In-one.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.dvyadav.awl.LoginPageController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="400.0" styleClass="setLoginBackground" stylesheets="@All-In-one.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.dvyadav.awl.LoginPageController">
    <children>
-      <AnchorPane fx:id="loginAnchorPane" focusTraversable="true" prefHeight="650.0" prefWidth="400.0">
+      <AnchorPane fx:id="loginAnchorPane" focusTraversable="true" prefHeight="650.0" prefWidth="400.0" visible="false">
          <children>
             <Rectangle arcHeight="25.0" arcWidth="25.0" fill="WHITE" height="292.0" layoutX="37.0" layoutY="200.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="326.0" />
             <ImageView fitHeight="85.0" fitWidth="72.0" layoutX="166.0" layoutY="143.0" pickOnBounds="true" preserveRatio="true">

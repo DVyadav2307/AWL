@@ -14,12 +14,12 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="1097.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.dvyadav.awl.TeacherPageController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="622.0" prefWidth="1097.0" styleClass="setTeacherUIBackground" stylesheets="@All-In-one.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="io.github.dvyadav.awl.TeacherPageController">
    <children>
       <AnchorPane focusTraversable="true" prefHeight="200.0" prefWidth="200.0">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#c6c6c6" height="54.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1097.0" />
-            <Label fx:id="usernameOrTableNameLabel" alignment="CENTER_RIGHT" layoutX="963.0" layoutY="5.0" prefHeight="44.0" prefWidth="224.0" text="User Name" AnchorPane.rightAnchor="14.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="32.0" opacity="0.4" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1097.0" />
+            <Label fx:id="usernameOrTableNameLabel" alignment="CENTER_RIGHT" layoutX="859.0" layoutY="-5.0" prefHeight="44.0" prefWidth="224.0" text="User Name" textFill="WHITE" AnchorPane.rightAnchor="14.0">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -273,7 +273,7 @@
                   </TableView>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="profileManagementAnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="622.0" prefWidth="1097.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <AnchorPane fx:id="profileManagementAnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="622.0" prefWidth="1097.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Button fx:id="editProfileButtonOnProfileManagement" layoutX="13.0" layoutY="154.0" mnemonicParsing="false" onAction="#editEnable" prefHeight="54.0" prefWidth="306.0" text="Edit Profile">
                      <font>
@@ -296,7 +296,7 @@
                   <AnchorPane fx:id="editProfileAchorPaneOnProfileManagement" layoutX="333.0" layoutY="54.0" prefHeight="558.0" prefWidth="765.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cdcdcd" height="363.0" layoutX="39.0" layoutY="89.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
-                        <Rectangle fx:id="dpImageRectangleOnEditProfile" arcHeight="5.0" arcWidth="5.0" fill="#212eff" height="363.0" layoutX="28.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
+                        <Rectangle fx:id="dpImageRectangleOnEditProfile" arcHeight="5.0" arcWidth="5.0" fill="#c3c3c3" height="363.0" layoutX="28.0" layoutY="77.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="246.0" />
                         <Button fx:id="changeDpImageButtononEditProfile" layoutX="251.0" layoutY="65.0" mnemonicParsing="false" onAction="#selectImage" prefHeight="35.0" prefWidth="35.0" text="DP">
                            <font>
                               <Font size="8.0" />
@@ -346,9 +346,9 @@
                   </AnchorPane>
                </children>
             </AnchorPane>
-            <Button fx:id="attendenceManagementButton" layoutX="6.0" layoutY="59.0" mnemonicParsing="false" onAction="#showAttendenceManagementPane" prefHeight="44.0" prefWidth="102.0" text="Attendence Management" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="studentManagementButton" layoutX="112.0" layoutY="59.0" mnemonicParsing="false" onAction="#showAndPopulateStudentViewTable" prefHeight="44.0" prefWidth="102.0" text="Student Management" textAlignment="CENTER" wrapText="true" />
-            <Button fx:id="profileManagementButton" layoutX="218.0" layoutY="59.0" mnemonicParsing="false" onAction="#setProfileManagement" prefHeight="44.0" prefWidth="102.0" text="Profile Management" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="attendenceManagementButton" layoutX="6.0" layoutY="37.0" mnemonicParsing="false" onAction="#showAttendenceManagementPane" prefHeight="44.0" prefWidth="102.0" styleClass="buttonOnTeacherUI" text="Attendence Management" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="studentManagementButton" layoutX="112.0" layoutY="37.0" mnemonicParsing="false" onAction="#showAndPopulateStudentViewTable" prefHeight="44.0" prefWidth="102.0" styleClass="buttonOnTeacherUI" text="Student Management" textAlignment="CENTER" wrapText="true" />
+            <Button fx:id="profileManagementButton" layoutX="218.0" layoutY="37.0" mnemonicParsing="false" onAction="#setProfileManagement" prefHeight="44.0" prefWidth="102.0" styleClass="buttonOnTeacherUI" text="Profile Management" textAlignment="CENTER" wrapText="true" />
          </children>
       </AnchorPane>
    </children>
