@@ -35,22 +35,22 @@
                         <Font size="40.0" />
                      </font>
                   </Label>
-                  <Label layoutX="35.0" layoutY="102.0" prefHeight="18.0" prefWidth="503.0" text="Title">
+                  <Label fx:id="titleLabelOnHomePage" layoutX="31.0" layoutY="113.0" prefHeight="18.0" prefWidth="503.0" text="Title">
                      <font>
-                        <Font name="System Bold" size="30.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label alignment="TOP_LEFT" layoutX="35.0" layoutY="177.0" prefHeight="363.0" prefWidth="495.0" text="Explanation:" textAlignment="JUSTIFY" wrapText="true">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="35.0" layoutY="566.0" text="Copyright: ">
+                  <Label fx:id="explanationLabelOnHomePage" alignment="TOP_LEFT" layoutX="35.0" layoutY="177.0" prefHeight="363.0" prefWidth="495.0" text="Explanation:" textAlignment="JUSTIFY" wrapText="true">
                      <font>
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="334.0" layoutY="566.0" text="Date: ">
+                  <Label fx:id="copyrightLabelOnHomePage" layoutX="35.0" layoutY="566.0" prefHeight="22.0" prefWidth="202.0" text="Copyright: ">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="dateLabelOnHomePage" layoutX="334.0" layoutY="566.0" prefHeight="22.0" prefWidth="202.0" text="Date: ">
                      <font>
                         <Font size="15.0" />
                      </font>

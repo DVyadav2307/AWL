@@ -921,7 +921,7 @@ public class TeacherPageController implements Initializable {
             explanationLabelOnHomePage.setText(jsonObject.getString("explanation"));
 
             // setting copyright text
-            copyrightLabelOnHomePage.setText("Copyright: "+ jsonObject.getString("copyright"));
+            copyrightLabelOnHomePage.setText("Copyright: "+ jsonObject.getString("copyright").replace("\n", ""));
 
             // setting datelabel on homepage
             dateLabelOnHomePage.setText("Date: "+ jsonObject.getString("date"));
@@ -935,7 +935,7 @@ public class TeacherPageController implements Initializable {
            System.out.println("Exception on SETTING HOMEPAGE");
            ex.printStackTrace();
         }
-        
+
     }
 
 
