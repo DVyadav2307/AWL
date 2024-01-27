@@ -173,6 +173,8 @@ public class LoginPageController implements Initializable{
                     stage.setScene(new Scene(root));
                     stage.centerOnScreen();
                     stage.show();
+
+                    // setting username for second fxml file or second insterface component
                     TeacherPageController controller = loader.getController();
                     controller.usernameOrTableNameLabel.setText(usernameTextFieldOnLoginPage.getText());
                 }

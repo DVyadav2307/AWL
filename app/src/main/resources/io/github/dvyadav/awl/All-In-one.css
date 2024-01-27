@@ -81,6 +81,77 @@
 .manageStudentButton{
     -fx-background-image: url('images/interface/STUDENTS.png');
 }
-.manageProfile{
+.manageProfileButton{
     -fx-background-image: url('images/interface/PROFILE.png');
 }
+
+
+.textFeildOnTeacherUI{
+    -fx-text-fill: #161837;
+    -fx-background-color: #ffd7ff ;
+    -fx-background-radius: 7;
+}
+.textFeildOnTeacherUI:hover{
+    -fx-border-width: 1px;
+    -fx-border-color: #161837;
+    -fx-border-radius: 7;
+}
+
+.textFeildOnTeacherUI:focused{
+    -fx-border-width: 2px;
+    -fx-border-color: #161837;
+    -fx-border-radius: 7;
+}
+
+
+
+.titleLabelOnDarkBackgroung{
+    -fx-text-fill: #ffd7ff;
+}
+.dataLabelOnDarkBackground{
+    -fx-text-fill: White;
+}
+
+
+
+.confirmAddStudentButton:hover{
+    -fx-background-color: rgb(85, 150, 85) ;
+    -fx-text-fill: white;
+}
+.confirmDeleteStudentButton:hover{
+    -fx-background-color: rgb(194, 71, 71) ;
+    -fx-text-fill: White;
+}
+
+
+
+.addStudentButton{
+    -fx-background-image: url('images/interface/addStudentButton.png');
+}
+.deleteStudentButton{
+    -fx-background-image: url('images/interface/deleteStudentButton.png');
+}
+
+.markAttendeceButton{
+    -fx-background-image: url('images/interface/markAttendenceButton.png');
+}
+.viewAttendenceButton{
+    -fx-background-image: url('images/interface/viewAttendenceButton.png');
+}
+
+.editProfileButton{
+    -fx-background-image: url('images/interface/editProfileButton.png');
+}
+.logoutButton{
+    -fx-background-image: url('images/interface/logoutButton.png');
+}
+.deleteAccount{
+    -fx-background-image: url('images/interface/deleteAccountButton.png');
+}
+
+.editDP{
+    -fx-background-image: url('images/interface/editDP.png');
+    -fx-background-radius: 50;
+    -fx-background-color: transparent;
+}
+
