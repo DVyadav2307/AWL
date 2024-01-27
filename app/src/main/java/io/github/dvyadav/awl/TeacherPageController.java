@@ -1,11 +1,10 @@
 package io.github.dvyadav.awl;
 
-import java.nio.charset.Charset;
-
 import java.awt.Desktop;
 import java.io.File;
 import java.net.URI;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.util.ResourceBundle;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,6 +18,8 @@ import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.net.URIBuilder;
 import org.json.JSONObject;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -49,6 +50,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class TeacherPageController implements Initializable {
 
@@ -185,8 +187,6 @@ public class TeacherPageController implements Initializable {
     @FXML
     Hyperlink contactUsHyperlinkOnProfileManagement;
     @FXML
-    ImageView imageForDeleteActionOnProfileManagement;
-    @FXML
     AnchorPane editProfileAchorPaneOnProfileManagement;
 
     // following controls are on editProfileAchorPane
@@ -246,9 +246,36 @@ public class TeacherPageController implements Initializable {
     Button profileManagementButton;
     @FXML
     Label infoLabelOnStudentMangement;
+    @FXML
+    ImageView infoLabelImageView;
+
+    // showing alert or success info and hiding after 4 secs
+    public void showThenHideAlert(Boolean isWarning, String Messege){
+
+        // setting the images according to context
+        if(isWarning){
+            // for warning
+            infoLabelImageView.setImage(new Image(getClass().getResourceAsStream("images/interface/warning.gif")));
+        }else{
+            // for generel success info
+            infoLabelImageView.setImage(new Image(getClass().getResourceAsStream("images/interface/info.gif")));
+        }
+        // setting measseges text
+        infoLabelOnStudentMangement.setText(Messege);
+        // showing the alert
+        infoLabelImageView.setVisible(true);
+        infoLabelOnStudentMangement.setVisible(true);
+
+        // hide after 4 seconds
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(4), e -> {
+            infoLabelImageView.setVisible(false);
+            infoLabelOnStudentMangement.setVisible(false);
+        }   ));
+        timeline.play();
+    }
 
 
-    // choosing pho from deviec
+    // choosing photo from deviec
     public void selectImage(ActionEvent e){
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg", "*.gif"));
@@ -334,8 +361,8 @@ public class TeacherPageController implements Initializable {
             }
 
         }else{
-            infoLabelOnStudentMangement.setText("Mailing via link is not supported!");
-            infoLabelOnStudentMangement.setVisible(false);
+            // error -> Mailing via link is not supported
+           showThenHideAlert(true, "Mailing via link is not upported");
         }
     }
 
@@ -343,8 +370,6 @@ public class TeacherPageController implements Initializable {
     // Deletin usaer account
     public void deleteAccount(ActionEvent e){
 
-        // showing image for deletion represenation
-        imageForDeleteActionOnProfileManagement.setVisible(true);
 
         // showing warning about deletion account
         Alert deleteAlert = new Alert(AlertType.WARNING);
@@ -493,10 +518,6 @@ public class TeacherPageController implements Initializable {
         saveButtonOnEditProfile.setVisible(false);
         cancelButtonOnEditProfile.setVisible(false);
 
-        // hiding delete action representation image
-        imageForDeleteActionOnProfileManagement.setVisible(false);
-
-
         // hiding other interfaces
         hideAllPanes();
 
@@ -565,19 +586,14 @@ public class TeacherPageController implements Initializable {
         
         // if there is no table, no updation/insertion will be done
         if(!attendenceDataList.isEmpty()){
-            // promptinf for potential delays
-            infoLabelOnStudentMangement.setVisible(true);
-            infoLabelOnStudentMangement.setText("Please, Wait a moment...");
-
-            System.out.println(infoLabelOnStudentMangement.getText());
             
             // updating attendence iteratively
             for (StudentModel student : attendenceDataList) {
                 fromDatabase.updateAttendence(student.getRollNumber(), student.isPresent(), datePickerOnMarkAttendence.getValue().toString(), usernameOrTableNameLabel.getText());
             }
 
-            // prompt on successfull updation
-            infoLabelOnStudentMangement.setText("Attendence Marked Successfully");
+            // prompt on successfull updation -> Attendece Marked Successfully
+            showThenHideAlert(false, "Attendence Marked Sucessfully");
         }
 
         // clear the table to prevent possible error
@@ -683,10 +699,7 @@ public class TeacherPageController implements Initializable {
 
         // setting semeseter combo boxes on both sub panes
         semsterComboBoxOnMarkAttendence.setItems(fromDatabase.getSemester());
-        semesterComboBoxOnViewAttendence.setItems(semsterComboBoxOnMarkAttendence.getItems());
-
-        // hiding other alerts
-        infoLabelOnStudentMangement.setVisible(false);
+        semesterComboBoxOnViewAttendence.setItems(semsterComboBoxOnMarkAttendence.getItems());       
 
         // hiding other main panes
         hideAllPanes();
@@ -706,13 +719,15 @@ public class TeacherPageController implements Initializable {
                 // deleting Student Data too
                 fromDatabase.deleteStudentTable(rollNumber, usernameOrTableNameLabel.getText());
 
-                infoLabelOnStudentMangement.setText("Student Deleted Successfully");
-            }else{
-                infoLabelOnStudentMangement.setText("Something went Wrong, try again");
-            }
+                // msg -> Student deleted Sucessfully
+                showThenHideAlert(false, "Student Deleted Sucessfully");
 
+            }else{
+                // error -> something went wrong
+                showThenHideAlert(true, "Something Went Wrong");
+
+            }
             showAndPopulateStudentViewTable(null);
-            infoLabelOnStudentMangement.setVisible(true);
             return;
         }
     }
@@ -729,8 +744,8 @@ public class TeacherPageController implements Initializable {
 
             // if string is empty i.e. roll number not found
             if(studentDataFromDB[0] == null){
-                infoLabelOnStudentMangement.setText("Roll Number does not exist");
-                infoLabelOnStudentMangement.setVisible(true);
+                // error -> roll number does not exist
+               showThenHideAlert(false, "Roll Number doesnot exist");
             }
             // if returned data normally
             nameLabelOnDeleteStudent.setText(studentDataFromDB[0]);
@@ -809,7 +824,8 @@ public class TeacherPageController implements Initializable {
                                 // creating student;s presonal attendence table
                                 fromDatabase.createStudentTable(rollNumber, usernameOrTableNameLabel.getText());
 
-                                infoLabelOnStudentMangement.setText("Student Added Successfully!");
+                                // msg -> Student Added Successfully
+                                showThenHideAlert(false, "Student Added Sucessfully");
 
                                 // clearing previous values of the data feilds
                                 nameTextFieldOnAddStudent.clear();
@@ -821,9 +837,9 @@ public class TeacherPageController implements Initializable {
                                 // showing the updated table
                                 showAndPopulateStudentViewTable(null);
                              }else{
-                                infoLabelOnStudentMangement.setText("The Roll Number is already in use");
+                                // error-> The Roll Number is already used
+                                showThenHideAlert(true, "The Roll Number already in use");
                              }
-                             infoLabelOnStudentMangement.setVisible(true);
                             return;
                         }
                     }
@@ -831,21 +847,20 @@ public class TeacherPageController implements Initializable {
             }
         }
 
-        infoLabelOnStudentMangement.setText("Please Fill All Details");
-        infoLabelOnStudentMangement.setVisible(true);
+        // error -> Please fill All details
+        showThenHideAlert(true, "Please fill all details");
     }
 
     // restricts the input of only nukmerical value in roll number
     public void allowOnlyNumbers(KeyEvent ke){
-        infoLabelOnStudentMangement.setVisible(false);
 
         // System.out.println("typed");
         String input = ke.getCharacter();
 
         if( ! input.matches("[0-9\b]")){
             ((TextField)ke.getSource()).setText("");
-            infoLabelOnStudentMangement.setText("Only Numerical inputs allowed !");
-            infoLabelOnStudentMangement.setVisible(true);
+            // error->Only Numberical input allowed
+            showThenHideAlert(true, "Only numerical input allowed");
         }
     }
 

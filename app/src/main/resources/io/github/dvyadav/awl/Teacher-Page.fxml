@@ -11,7 +11,6 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
@@ -420,14 +419,10 @@
             </AnchorPane>
             <Label fx:id="infoLabelOnStudentMangement" focusTraversable="false" layoutX="61.0" prefHeight="34.0" prefWidth="257.0" styleClass="dataLabelOnDarkBackground" text="Info Label" visible="false" AnchorPane.bottomAnchor="476.0" AnchorPane.leftAnchor="61.0" AnchorPane.rightAnchor="779.0" AnchorPane.topAnchor="112.0">
                <font>
-                  <Font size="20.0" />
+                  <Font size="16.0" />
                </font>
             </Label>
-            <ImageView fitHeight="42.0" fitWidth="42.0" layoutX="16.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@images/interface/warning.gif" />
-               </image>
-            </ImageView>
+            <ImageView fx:id="infoLabelImageView" fitHeight="42.0" fitWidth="42.0" layoutX="16.0" layoutY="104.0" pickOnBounds="true" preserveRatio="true" />
             <Button fx:id="attendenceManagementButton" layoutX="6.0" layoutY="37.0" mnemonicParsing="false" onAction="#showAttendenceManagementPane" prefHeight="44.0" prefWidth="102.0" text="MANAGE ATTENDENCE" textAlignment="CENTER" wrapText="true">
                <padding>
                   <Insets left="26.0" />
