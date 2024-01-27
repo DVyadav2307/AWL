@@ -297,7 +297,13 @@ public class TeacherPageController implements Initializable {
         String designation = designationTextFeildOnEditProfile.getText().trim();
         String collegeName = collegeNameTextFeildOnEditProfile.getText().trim();
         String email = emailTextFieldOnEditProfile.getText().trim();
-        Long phoneNumber = Long.parseLong(phoneNumberTextFieldOnEditProfile.getText().trim());
+        Long phoneNumber;
+        try {
+             phoneNumber = Long.parseLong(phoneNumberTextFieldOnEditProfile.getText().trim());
+        } catch (Exception ex) {
+            // return if exception in number Since string is invalid to be a numerical value
+            return;
+        }
 
 
         // validating and saving all changes
@@ -309,13 +315,21 @@ public class TeacherPageController implements Initializable {
                             // sending information to save in db 
                             fromDatabase.setProfileDataOfUser(usernameOrTableNameLabel.getText().trim(), name, designation, collegeName, email, phoneNumber);
                             setProfileManagement(e);
+                            showThenHideAlert(false, "Profile Updated Sucessfully");
                             return;
                         }
+                        // when worng phone num
+                        showThenHideAlert(true, "Inavlid Phone Number");
+                        return;
                     }
+                    // when email worng
+                    showThenHideAlert(true, "Invalid Email address");
+                    return;
                 }
             }
         }
-
+        // in case of anything empty
+        showThenHideAlert(true, "Please Fill all Details");
 
     }
 
@@ -719,15 +733,15 @@ public class TeacherPageController implements Initializable {
                 // deleting Student Data too
                 fromDatabase.deleteStudentTable(rollNumber, usernameOrTableNameLabel.getText());
 
+                showAndPopulateStudentViewTable(null);
+
                 // msg -> Student deleted Sucessfully
                 showThenHideAlert(false, "Student Deleted Sucessfully");
 
             }else{
                 // error -> something went wrong
                 showThenHideAlert(true, "Something Went Wrong");
-
             }
-            showAndPopulateStudentViewTable(null);
             return;
         }
     }
@@ -745,7 +759,7 @@ public class TeacherPageController implements Initializable {
             // if string is empty i.e. roll number not found
             if(studentDataFromDB[0] == null){
                 // error -> roll number does not exist
-               showThenHideAlert(false, "Roll Number doesnot exist");
+               showThenHideAlert(true, "Roll Number doesnot exist");
             }
             // if returned data normally
             nameLabelOnDeleteStudent.setText(studentDataFromDB[0]);
@@ -824,9 +838,6 @@ public class TeacherPageController implements Initializable {
                                 // creating student;s presonal attendence table
                                 fromDatabase.createStudentTable(rollNumber, usernameOrTableNameLabel.getText());
 
-                                // msg -> Student Added Successfully
-                                showThenHideAlert(false, "Student Added Sucessfully");
-
                                 // clearing previous values of the data feilds
                                 nameTextFieldOnAddStudent.clear();
                                 rollNumberTextFieldOnAddStudent.clear();
@@ -836,6 +847,11 @@ public class TeacherPageController implements Initializable {
 
                                 // showing the updated table
                                 showAndPopulateStudentViewTable(null);
+
+                                System.out.println("BEFORE");
+                                // msg -> Student Added Successfully
+                                showThenHideAlert(false, "Student Added Sucessfully");
+                                System.out.println("AFTER");
                              }else{
                                 // error-> The Roll Number is already used
                                 showThenHideAlert(true, "The Roll Number already in use");
