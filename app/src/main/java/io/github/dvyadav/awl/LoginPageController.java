@@ -2,6 +2,16 @@ package io.github.dvyadav.awl;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.nio.charset.Charset;
+
+import org.apache.hc.client5.http.classic.methods.HttpGet;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
+import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
+import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.io.entity.EntityUtils;
+import org.apache.hc.core5.net.URIBuilder;
+import org.json.JSONObject;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,15 +22,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.ImagePattern;
 import javafx.stage.Stage;
 
 public class LoginPageController implements Initializable{
@@ -66,6 +78,14 @@ public class LoginPageController implements Initializable{
     Hyperlink loginHereHyperlinkOnSignupPage;
     @FXML
     ImageView errorImageOnSignupPage;
+
+
+    // following controls or object are refernce for APOTD on teacher UI
+    Image apotdImage;
+    String titleApotd;
+    String explainAptod;
+    String coyrightApotd;
+    String dateApotd;
 
 
     // hide the error messege
@@ -168,6 +188,7 @@ public class LoginPageController implements Initializable{
                 if(fromDatabase.isUserValid(usernameTextFieldOnLoginPage.getText(), passwordFieldOnLoginPage.getText())){
                     
                     Stage stage = ((Stage)((Node)e.getSource()).getScene().getWindow());
+                    // fxml loader to lead Teacher UI FXML inot the current scene
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("Teacher-Page.fxml"));
                     Parent root = loader.load();
                     stage.setScene(new Scene(root));
@@ -177,6 +198,21 @@ public class LoginPageController implements Initializable{
                     // setting username for second fxml file or second insterface component
                     TeacherPageController controller = loader.getController();
                     controller.usernameOrTableNameLabel.setText(usernameTextFieldOnLoginPage.getText());
+
+
+                    // SETTING HOMEPAGE FOR APOTD
+                    // setting the homepage image
+                    controller.apotdImageRectangleOnHomePage.setFill(new ImagePattern(apotdImage));
+                    //setting Title of the image
+                    controller.titleLabelOnHomePage.setText(titleApotd);
+                    // setting explanation
+                    controller.explanationLabelOnHomePage.setText(explainAptod);
+                    // setting copyright text
+                    controller.copyrightLabelOnHomePage.setText("Copyright: "+ coyrightApotd);
+                    // setting datelabel on homepage
+                    controller.dateLabelOnHomePage.setText("Date: "+ dateApotd);
+
+
                 }
                 else{
                     // show error on unsuccessfull authentication
@@ -228,16 +264,66 @@ public class LoginPageController implements Initializable{
         }
     }
 
+    // setting homepage of teacher ui to avoid delay
+    public void makeApiCall(){
+        try {
+            //key and query of the APOTD API
+            final String KEY = "y7MiaLUD633zBMjonafWi2EvL5ebP50lSZx787vk";
+            final String stringQuery = "https://api.nasa.gov/planetary/apod";
+
+            // initializing client
+            CloseableHttpClient httpClient = HttpClients.createDefault();
+
+            // buikding URL to standard form
+            URIBuilder builder = new URIBuilder(stringQuery);
+            builder.setParameter("api_key", KEY);
+            
+            // cretaing a get request
+            HttpGet get = new HttpGet(builder.build());
+            // fetching response
+            CloseableHttpResponse response = httpClient.execute(get);
+            
+            // extracting the object(entity) from the response and ceonverting it into raw string
+            HttpEntity entity = response.getEntity();
+            String rawResponse = EntityUtils.toString(entity, Charset.forName("utf-8"));
+            System.out.println(rawResponse);
+
+            // creating JSON Onject from response String
+            JSONObject jsonObject = new JSONObject(rawResponse);
+
+            // setting image, title, explaination, copyright and date
+            apotdImage = new Image(jsonObject.getString("url"));
+            titleApotd = jsonObject.getString("title");
+            explainAptod = jsonObject.getString("explanation");
+            try {
+                coyrightApotd = jsonObject.getString("copyright");
+            } catch (Exception e) {
+                coyrightApotd = "Unknown";
+            }
+            dateApotd = jsonObject.getString("date");
+
+            
+        } catch (Exception ex) {
+           System.out.println("Exception on API CALL");
+           ex.printStackTrace();
+        }
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+
+        
         // initialize the app with login screen
         loginAnchorPane.setVisible(true);
         signUpAnchorPane.setVisible(false);
-
+        
         //hidin error/alert messege
         hideError(LginButtonOnLoginPage);
         hideError(registerButtonOnSignupPage);
+
+        // to avoid the daly in loading the teacher ui duw to large size of the astronomical picture on teacher ui, the same will be loaded very early at the loading the aaplication for first time
+        makeApiCall();
     }
 
 
