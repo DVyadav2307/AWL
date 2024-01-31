@@ -286,7 +286,6 @@ public class LoginPageController implements Initializable{
             // extracting the object(entity) from the response and ceonverting it into raw string
             HttpEntity entity = response.getEntity();
             String rawResponse = EntityUtils.toString(entity, Charset.forName("utf-8"));
-            System.out.println(rawResponse);
 
             // creating JSON Onject from response String
             JSONObject jsonObject = new JSONObject(rawResponse);
