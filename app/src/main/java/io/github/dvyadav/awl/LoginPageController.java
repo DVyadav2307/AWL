@@ -1,5 +1,6 @@
 package io.github.dvyadav.awl;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.nio.charset.Charset;
@@ -8,7 +9,10 @@ import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
+import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpEntity;
+import org.apache.hc.core5.http.HttpException;
+import org.apache.hc.core5.http.io.HttpClientResponseHandler;
 import org.apache.hc.core5.http.io.entity.EntityUtils;
 import org.apache.hc.core5.net.URIBuilder;
 import org.json.JSONObject;
@@ -268,11 +272,31 @@ public class LoginPageController implements Initializable{
     public void makeApiCall(){
         try {
             //key and query of the APOTD API
-            final String KEY = "y7MiaLUD633zBMjonafWi2EvL5ebP50lSZx787vk";
+            final String KEY = System.getenv("NASA_APOTD_API_KEY");
             final String stringQuery = "https://api.nasa.gov/planetary/apod";
 
             // initializing client
             CloseableHttpClient httpClient = HttpClients.createDefault();
+
+            // ResponseHandler interface object is must rquired to ensure closing of request
+            HttpClientResponseHandler<String> responseHandler = new HttpClientResponseHandler<String>() {
+                // method overriden to handle reponse
+                @Override
+                public String handleResponse(ClassicHttpResponse response) throws HttpException, IOException {
+                   int reponseCode = response.getCode();
+                    // if response is returned correctly return the response string
+                   if(reponseCode >= 200 && reponseCode < 300){
+                    HttpEntity entity = response.getEntity();
+                    if(entity == null){
+                        return "";
+                    }else{
+                        return EntityUtils.toString(entity, Charset.forName("utf-8"));
+                    }
+                   }else{//    when reponse is not correctly returned
+                    return " "+reponseCode;
+                   }
+                }
+            };
 
             // buikding URL to standard form
             URIBuilder builder = new URIBuilder(stringQuery);
@@ -280,12 +304,9 @@ public class LoginPageController implements Initializable{
             
             // cretaing a get request
             HttpGet get = new HttpGet(builder.build());
-            // fetching response
-            CloseableHttpResponse response = httpClient.execute(get);
             
-            // extracting the object(entity) from the response and ceonverting it into raw string
-            HttpEntity entity = response.getEntity();
-            String rawResponse = EntityUtils.toString(entity, Charset.forName("utf-8"));
+            // fetching response
+           String rawResponse = httpClient.execute(get, responseHandler);
 
             // creating JSON Onject from response String
             JSONObject jsonObject = new JSONObject(rawResponse);
