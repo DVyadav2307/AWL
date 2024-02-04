@@ -13,7 +13,7 @@ public class FromDatabase {
 
     private final String URL = "jdbc:mysql://sql.freedb.tech:3306/freedb_collegeDB";
     private final String USERNAME = "freedb_dvyadav";
-    private final String PASSWORD ="";  //please contact for DBMS password
+    private final String PASSWORD =System.getenv("MYSQL_FREEDB_PASSWORD");  //please contact for DBMS password
 
     private Connection connection ;
     private PreparedStatement statement ;
