@@ -2,12 +2,11 @@ package io.github.dvyadav.awl;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ResourceBundle;
 import java.nio.charset.Charset;
+import java.util.ResourceBundle;
 
 import org.apache.hc.client5.http.classic.methods.HttpGet;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpEntity;
