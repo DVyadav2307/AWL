@@ -11,8 +11,8 @@ import javafx.collections.ObservableList;
 
 public class FromDatabase {
 
-    private final String URL = "jdbc:mysql://sql.freedb.tech:3306/freedb_collegeDB";
-    private final String USERNAME = "freedb_dvyadav";
+    private final String URL = "jdbc:mysql:// sql6.freesqldatabase.com:3306/sql6702642";
+    private final String USERNAME = "sql6702642";
     private final String PASSWORD =System.getenv("MYSQL_FREEDB_PASSWORD");  //please contact for DBMS password
 
     private Connection connection ;
